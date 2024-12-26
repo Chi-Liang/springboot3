@@ -1,0 +1,55 @@
+server:
+  servlet:
+    context-path: /template
+    session:
+        cookie:
+          secure: true
+          same-site: Strict
+  shutdown: graceful
+
+spring:
+  datasource:
+    url: jdbc:mysql://103.1.221.175:3308/sit_db?characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 2b4c6b1a5ba829c6ac9f10c98e5b3e28a8970b44ddafeab148dafcbdc34c015a
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+
+jwt:
+  secret-key: template
+  access-token-validity: 4
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+        #logging:
+        #  level:
+        #    root: info
+        #    org:
+        #      hibernate:
+        #        SQL: debug
+        #        type:
+        #          descriptor:
+        #            sql:
+        #              BasicBinder: trace
+
+#http://localhost:8080/template/swagger-ui/index.html
+
+cpsd:
+  ap:
+    decrypt-key: template
+    salt: 123456
+
+log:
+  path: C:/log/template
