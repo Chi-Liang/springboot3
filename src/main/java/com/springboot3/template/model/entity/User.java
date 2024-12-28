@@ -22,6 +22,9 @@ public class User {
     @Column(length = 50)
     private String name;
 
+    @Column
+    private String role;
+
     @Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime createdt;
