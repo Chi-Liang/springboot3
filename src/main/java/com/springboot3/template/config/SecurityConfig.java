@@ -46,10 +46,13 @@ public class SecurityConfig {
 
     private String authEntryPointUri;
 
+    private String authSuccessPointUri;
+
+
     @PostConstruct
     private void init() {
         authEntryPointUri = "/".concat(env.getProperty("template.entry-point.auth", "auth"));
-
+        authSuccessPointUri = authEntryPointUri.concat("/dashboard");
         authLoginUrl = env.getProperty("template.security.auth.login-url", authEntryPointUri + "/login");
         authLogoutUrl = env.getProperty("template.security.auth.logout-url", authEntryPointUri + "/logout");
     }
@@ -60,14 +63,13 @@ public class SecurityConfig {
 
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers(
-                                "/api/**",authEntryPointUri + "/**"
-                        ).authenticated()
+                        .requestMatchers(authLoginUrl).permitAll()
+                        .requestMatchers("/api/**",authEntryPointUri + "/**").authenticated()
                         .anyRequest().permitAll()
                 ).formLogin(formLogin -> formLogin
                         .loginPage(authLoginUrl)
                         .loginProcessingUrl(authLoginUrl)
-                        .successHandler(authSuccessHandler(authEntryPointUri))
+                        .successHandler(authSuccessHandler(authSuccessPointUri))
                         .failureHandler(authFailureHandler(authLoginUrl))
                 )
 

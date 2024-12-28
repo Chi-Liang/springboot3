@@ -1,8 +1,10 @@
 package com.springboot3.template.security;
 
+import com.springboot3.template.utils.HttpTools;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -20,6 +22,8 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+        HttpSession session = HttpTools.getSession();
+        session.removeAttribute("error");
         redirectStrategy.sendRedirect(request, response, defaultSuccessUrl);
     }
 }

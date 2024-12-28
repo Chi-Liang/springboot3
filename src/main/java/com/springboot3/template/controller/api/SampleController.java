@@ -103,4 +103,9 @@ public class SampleController {
         return ResponseEntity.ok(httpService.getTodoById(1));
     }
 
+    @PostMapping("/createToken")
+    public ResponseEntity<String> createToken() {
+        return ResponseEntity.ok(jwtUtil.createToken("test",Map.of("test","testClaim")));
+    }
+
 }
