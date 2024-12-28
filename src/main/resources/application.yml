@@ -52,5 +52,9 @@ cpsd:
     decrypt-key: template
     salt: 123456
 
+template:
+  entry-point:
+    auth: backend
+
 log:
   path: C:/log/template
