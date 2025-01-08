@@ -5,6 +5,7 @@ server:
         cookie:
           secure: true
           same-site: Strict
+  port: 8080
   shutdown: graceful
 
 spring:
@@ -46,6 +47,8 @@ springdoc:
         #          descriptor:
         #            sql:
         #              BasicBinder: trace
+
+#http://localhost:8080/template/swagger-ui/index.html
 
 cpsd:
   ap:
