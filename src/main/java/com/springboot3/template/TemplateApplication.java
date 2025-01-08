@@ -13,15 +13,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 		(exclude = {DataSourceAutoConfiguration.class
 		,DataSourceTransactionManagerAutoConfiguration.class})
-public class TemplateApplication extends SpringBootServletInitializer {
+public class TemplateApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TemplateApplication.class, args);
-	}
-
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(TemplateApplication.class);
 	}
 
 }
