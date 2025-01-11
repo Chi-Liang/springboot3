@@ -1,12 +1,11 @@
 server:
   servlet:
-    context-path: /template
+    #context-path: /template
     session:
         cookie:
           secure: true
           same-site: Strict
-  port: 8080
-  shutdown: graceful
+  port: 8082
 
 spring:
   datasource:
@@ -48,8 +47,9 @@ springdoc:
         #            sql:
         #              BasicBinder: trace
 
-#http://localhost:8080/template/swagger-ui/index.html
-
+#http://localhost/template/swagger-ui/index.html
+#http://localhost/template/api/sample/getAll1
+#http://localhost/template/backend/login
 cpsd:
   ap:
     decrypt-key: template
@@ -58,6 +58,11 @@ cpsd:
 template:
   entry-point:
     auth: backend
+
+project:
+  host: http://127.0.0.1
+  path: /template
+  server-url: ${project.host}${project.path}/
 
 log:
   path: C:/log/template
