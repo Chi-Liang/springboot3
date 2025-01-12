@@ -1,8 +1,10 @@
 package com.springboot3.template.controller.backend;
 
 import com.springboot3.template.utils.MvcTools;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Objects;
@@ -16,7 +18,6 @@ public class AuthController {
         if (Objects.nonNull(authentication)) {
             return MvcTools.redirectAuth("dashboard");
         }
-
         return "backend/login";
     }
 
@@ -27,7 +28,9 @@ public class AuthController {
     }
 
     @GetMapping("/internalServerError")
-    public String internalServerError() {
+    public String internalServerError(HttpServletRequest request,Model model) {
+        String message = (String)request.getParameter("message");
+        model.addAttribute("message",message);
         return "backend/error500";
     }
 

@@ -27,6 +27,9 @@ public class AuthEntryPoint implements AuthenticationEntryPoint {
     @Value("${template.entry-point.auth}")
     private String authEntryPoint;
 
+    @Value("${project.path}")
+    private String projectPath;
+
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         if (HttpTools.isApiRequest()) {
@@ -38,6 +41,6 @@ public class AuthEntryPoint implements AuthenticationEntryPoint {
             objectMapper.writeValue(response.getOutputStream(),problemDetail);
             return;
         }
-        redirectStrategy.sendRedirect(request, response,"/" + authEntryPoint + "/login");
+        redirectStrategy.sendRedirect(request, response,projectPath + "/" + authEntryPoint + "/login");
     }
 }

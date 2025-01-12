@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.security.core.Authentication;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -36,10 +38,14 @@ public class GlobalBackendExceptionHandler {
     private final LogService logService;
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
+    @Value("${project.path}")
+    private String projectPath;
+
     @ExceptionHandler(Exception.class)
-    public ModelAndView exceptionHandler(Exception e) throws IOException {
+    public ModelAndView exceptionHandler(RedirectAttributes redirectAttributes, Exception e) throws IOException {
         log.error("GlobalBackendExceptionHandler error :{}",e.getMessage(),e);
-        ModelAndView modelAndView = new ModelAndView("redirect:/backend/internalServerError");
+        String redirectUrl = projectPath + "/backend/internalServerError";
+        ModelAndView modelAndView = new ModelAndView("redirect:" + redirectUrl);
         modelAndView.addObject("message", e.getMessage());
         return modelAndView;
     }

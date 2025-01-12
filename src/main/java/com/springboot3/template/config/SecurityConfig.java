@@ -40,6 +40,8 @@ public class SecurityConfig {
 
     private final Environment env;
 
+    private String projectUrl;
+
     private String authLoginUrl;
 
     private String authLogoutUrl;
@@ -51,10 +53,11 @@ public class SecurityConfig {
 
     @PostConstruct
     private void init() {
-        authEntryPointUri = "/".concat(env.getProperty("template.entry-point.auth", "auth"));
+        projectUrl = env.getProperty("project.path");
+        authEntryPointUri =  "/" + env.getProperty("template.entry-point.auth");
         authSuccessPointUri = authEntryPointUri.concat("/dashboard");
-        authLoginUrl = env.getProperty("template.security.auth.login-url", authEntryPointUri + "/login");
-        authLogoutUrl = env.getProperty("template.security.auth.logout-url", authEntryPointUri + "/logout");
+        authLoginUrl = authEntryPointUri + "/login";
+        authLogoutUrl = authEntryPointUri + "/logout";
     }
 
 
@@ -69,25 +72,26 @@ public class SecurityConfig {
                 ).formLogin(formLogin -> formLogin
                         .loginPage(authLoginUrl)
                         .loginProcessingUrl(authLoginUrl)
-                        .successHandler(authSuccessHandler(authSuccessPointUri))
-                        .failureHandler(authFailureHandler(authLoginUrl))
+                        .successHandler(authSuccessHandler(projectUrl + authSuccessPointUri))
+                        .failureHandler(authFailureHandler(projectUrl +  authLoginUrl))
                 )
 
                 .logout(logout -> logout
                         .logoutUrl(authLogoutUrl)
+                        .logoutSuccessUrl(projectUrl + authLoginUrl + "?logout")
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .deleteCookies(SESSION_ID)
                 )
                 .sessionManagement(sessionManagement -> sessionManagement
-                        .invalidSessionUrl(authLogoutUrl)
+                        .invalidSessionUrl(projectUrl + authLogoutUrl)
                 );
 
 
         http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
-            .addFilterBefore(apiLoggingFilter,JwtAuthorizationFilter.class)  ;
+                .addFilterBefore(apiLoggingFilter,JwtAuthorizationFilter.class)  ;
         http.exceptionHandling(exceptionHandling ->
-                        exceptionHandling.authenticationEntryPoint(authEntryPoint)
+                exceptionHandling.authenticationEntryPoint(authEntryPoint)
         );
 
         return http.build();
