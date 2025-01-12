@@ -47,9 +47,6 @@ springdoc:
         #            sql:
         #              BasicBinder: trace
 
-#http://localhost/template/swagger-ui/index.html
-#http://localhost/template/api/sample/getAll1
-#http://localhost/template/backend/login
 cpsd:
   ap:
     decrypt-key: template
