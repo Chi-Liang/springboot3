@@ -6,9 +6,9 @@
  - Expired Jwt token
  ``
 ### swagger   
- - http://localhost/template/swagger-ui/index.html
+ - https://localhost/template/swagger-ui/index.html
 ### backend
- -  http://localhost/template/backend/login
+ -  https://localhost/template/backend/login
 ### backend username/password  
  - admin/1qaz2wsx
 ### nginx config

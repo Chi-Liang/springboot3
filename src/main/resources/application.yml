@@ -1,6 +1,14 @@
 server:
+#  port: 8443
+#  ssl:
+#    enabled: true
+#    key-store: classpath:mykeystore.jks
+#    key-store-type: JKS
+#    key-store-password: Qwer3wer
+#    key-alias: mysslcert
   servlet:
     #context-path: /template
+    address: 127.0.0.1
     session:
         cookie:
           secure: true
@@ -57,7 +65,7 @@ template:
     auth: backend
 
 project:
-  host: http://127.0.0.1
+  host: https://127.0.0.1:443
   path: /template
   server-url: ${project.host}${project.path}/
 
