@@ -6,9 +6,9 @@ server:
 #    key-store-type: JKS
 #    key-store-password: Qwer3wer
 #    key-alias: mysslcert
+  address: 127.0.0.1
   servlet:
     #context-path: /template
-    address: 127.0.0.1
     session:
         cookie:
           secure: true
