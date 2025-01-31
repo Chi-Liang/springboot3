@@ -64,10 +64,16 @@ template:
   entry-point:
     auth: backend
 
+#project:
+#  host: https://202.12.77.144:443
+#  path: /template
+#  server-url: ${project.host}${project.path}/
+
 project:
-  host: https://127.0.0.1:443
-  path: /template
+  host: ${PROJECT_HOST:https://localhost:443} 
+  path: ${PROJECT_PATH:/template}
   server-url: ${project.host}${project.path}/
+
 
 log:
   path: C:/log/template

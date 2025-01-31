@@ -13,3 +13,6 @@
  - admin/1qaz2wsx
 ### nginx config
 
+### start 
+ - "C:\Program Files\Java\jdk-17\bin"\java -DPROJECT_HOST=https://localhost:443 -DPROJECT_PATH=/template -jar template.jar
+
