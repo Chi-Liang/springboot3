@@ -16,7 +16,7 @@ server:
 
 spring:
   profiles:
-    active: sit
+    active: '@profileActive@'
   thymeleaf:
     cache: false
 
