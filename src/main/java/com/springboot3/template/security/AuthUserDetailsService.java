@@ -18,7 +18,7 @@ public class AuthUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findOneByNameIgnoreCase(username);
+        Optional<User> user = userRepository.findOneByMidIgnoreCase(username);
 
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("");
@@ -32,6 +32,7 @@ public class AuthUserDetailsService implements UserDetailsService {
     }
 
     private String[] createAuthorities(User user) {
-        return new String[]{user.getRole()};
+        return new String[]{"ADMIN"};
+//        return new String[]{user.getRole()};
     }
 }
