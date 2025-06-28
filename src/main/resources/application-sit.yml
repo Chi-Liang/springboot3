@@ -21,7 +21,7 @@ cpsd:
 
 jwt:
   secret-key: template
-  access-token-validity: 8760
+  access-token-validity: 4
 
 springdoc:
   api-docs:
