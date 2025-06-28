@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3308/springboot3?characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/springboot3?characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 2b4c6b1a5ba829c6ac9f10c98e5b3e28a8970b44ddafeab148dafcbdc34c015a
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -21,7 +21,7 @@ cpsd:
 
 jwt:
   secret-key: template
-  access-token-validity: 4
+  access-token-validity: 8760
 
 springdoc:
   api-docs:

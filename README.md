@@ -2,7 +2,7 @@
 
 ### Jwt Token
  - valid jwt token 365 days
- `eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwidGVzdCI6InRlc3RDbGFpbSIsImlhdCI6MTczNTM3NjA5NCwiZXhwIjoxOTE1Mzc2MDk0fQ.oovTaqSq10zQ8yyLAZMh2vNRj2pxTW4p6lpBUEni0FI`
+ `eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwidGVzdCI6InRlc3RDbGFpbSIsImlhdCI6MTc1MTEwNDg5MSwiZXhwIjoxNzUxMTE5MjkxfQ.mmUtlQFIrp0N4r5UKRYbackVtC7Wyoe4eJsv4ssSf6Q`
  - Expired Jwt token
  ``
 ### swagger   
@@ -10,7 +10,7 @@
 ### backend
  -  https://localhost/template/backend/login
 ### backend username/password  
- - admin/1qaz2wsx
+ - qq/Qwer3wer
 ### nginx config
 
 ### start 
